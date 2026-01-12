@@ -1,5 +1,5 @@
 {
-  "name": "cli-rena-cleanarch",
+  "name": "create-rena-cleanarch",
   "version": "1.0.0",
   "description": "Scaffold a new project from crosbydoo/rena-cleanarch",
   "license": "MIT",

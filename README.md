@@ -1,16 +1,24 @@
-# cli-rena-cleanarch
+# create-rena-cleanarch
+
+[![npm version](https://img.shields.io/npm/v/cli-rena-cleanarch.svg)](https://www.npmjs.com/package/cli-rena-cleanarch)
+[![npm downloads](https://img.shields.io/npm/dm/cli-rena-cleanarch.svg)](https://www.npmjs.com/package/cli-rena-cleanarch)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A CLI tool to scaffold new React Native projects using the clean architecture template from [crosbydoo/rena-cleanarch](https://github.com/crosbydoo/rena-cleanarch).
 
 ## Installation
 
-You can use this CLI tool directly with `npx` without installing it globally:
+### Quick Start (Recommended)
+
+Use `npx` to run the CLI without installing it globally:
 
 ```bash
 npx create-rena-cleanarch <project-name>
 ```
 
-Or install it globally:
+### Global Installation
+
+Install it globally via npm:
 
 ```bash
 npm install -g cli-rena-cleanarch
@@ -20,6 +28,14 @@ Then use it as:
 
 ```bash
 create-rena-cleanarch <project-name>
+```
+
+### Local Installation
+
+You can also install it as a dev dependency in your project:
+
+```bash
+npm install --save-dev cli-rena-cleanarch
 ```
 
 ## Usage
@@ -84,14 +100,18 @@ The CLI automatically detects and uses your preferred package manager in this or
 2. yarn
 3. npm
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
 ## License
 
-MIT
-
-## Author
-
-ristudev
+MIT © [ristudev](https://github.com/ristudev)
 
 ## Related
 
 - [rena-cleanarch](https://github.com/crosbydoo/rena-cleanarch) - The React Native clean architecture template
+
+## NPM Package
+
+📦 [View on npm](https://www.npmjs.com/package/cli-rena-cleanarch)
