@@ -62,6 +62,26 @@ To create the project without installing dependencies:
 npx create-rena-cleanarch my-app --no-install
 ```
 
+### Specify Package Manager
+
+You can explicitly choose which package manager to use:
+
+```bash
+# Use npm
+npx create-rena-cleanarch my-app --package-manager npm
+
+# Use yarn
+npx create-rena-cleanarch my-app --package-manager yarn
+
+# Use pnpm
+npx create-rena-cleanarch my-app --package-manager pnpm
+
+# Short form
+npx create-rena-cleanarch my-app --pm yarn
+```
+
+**Note:** If you don't specify a package manager, the CLI will auto-detect (yarn if available, otherwise npm).
+
 ### Help
 
 View usage information:
@@ -75,15 +95,16 @@ npx create-rena-cleanarch -h
 ## Requirements
 
 - Node.js >= 18.0.0
-- npm, yarn, or pnpm (for dependency installation)
+- npm (required), yarn or pnpm (optional, for dependency installation)
 
 ## Features
 
 - 🚀 Quick project scaffolding from a clean architecture template
-- 📦 Automatic dependency installation (supports npm, yarn, and pnpm)
+- 📦 Automatic dependency installation with package manager selection
 - 🎯 Automatic project name patching in package.json and app.json
 - 🧹 Removes template's git history for a fresh start
 - 🔄 Handles redirects when downloading the template
+- ⚙️ Support for npm, yarn, and pnpm with auto-detection or manual selection
 
 ## How It Works
 
@@ -93,12 +114,23 @@ npx create-rena-cleanarch -h
 4. **Patch**: Updates project metadata (name, slug, etc.)
 5. **Install**: Installs dependencies using your preferred package manager
 
-## Package Manager Detection
+## Package Manager
 
-The CLI automatically detects and uses your preferred package manager in this order:
-1. pnpm
-2. yarn
-3. npm
+### Auto-Detection
+
+By default, the CLI automatically detects and uses your preferred package manager in this order:
+1. yarn (if installed)
+2. npm (fallback)
+
+### Manual Selection
+
+You can explicitly specify which package manager to use with the `--package-manager` (or `--pm`) option:
+
+- `npm` - Node Package Manager
+- `yarn` - Yarn Package Manager
+- `pnpm` - Performant Node Package Manager
+
+The CLI will verify that the specified package manager is installed before attempting to use it.
 
 ## Contributing
 
