@@ -4,7 +4,7 @@
   "description": "Scaffold a new project from crosbydoo/rena-cleanarch",
   "license": "MIT",
   "bin": {
-    "create-rena-cleanarch": "bin/cli-rena-cleanarch.js"
+    "create-rena-cleanarch": "bin/create-rena-cleanarch.js"
   },
   "type": "commonjs",
   "engines": {
