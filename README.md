@@ -1,7 +1,7 @@
 # create-rena-cleanarch
 
-[![npm version](https://img.shields.io/npm/v/cli-rena-cleanarch.svg)](https://www.npmjs.com/package/cli-rena-cleanarch)
-[![npm downloads](https://img.shields.io/npm/dm/cli-rena-cleanarch.svg)](https://www.npmjs.com/package/cli-rena-cleanarch)
+[![npm version](https://img.shields.io/npm/v/cli-rena-cleanarch.svg)](https://www.npmjs.com/package/create-rena-cleanarch)
+[![npm downloads](https://img.shields.io/npm/dm/cli-rena-cleanarch.svg)](https://www.npmjs.com/package/create-rena-cleanarch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A CLI tool to scaffold new React Native projects using the clean architecture template from [crosbydoo/rena-cleanarch](https://github.com/crosbydoo/rena-cleanarch).
