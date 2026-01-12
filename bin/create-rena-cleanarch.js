@@ -13,19 +13,13 @@ const TEMPLATE_TARBALL =
 function usage() {
   console.log(`
 Usage:
-  npx create-rena-cleanarch <project-name> [options]
+  npx create-rena-cleanarch <project-name>
 
 Options:
-  --no-install              Skip installing dependencies
-  --package-manager <pm>    Specify package manager: npm, yarn, or pnpm
-  --pm <pm>                 Alias for --package-manager
   -h, --help                Show this help message
 
 Examples:
   npx create-rena-cleanarch my-app
-  npx create-rena-cleanarch my-app --no-install
-  npx create-rena-cleanarch my-app --package-manager yarn
-  npx create-rena-cleanarch my-app --pm pnpm
 `);
 }
 
@@ -120,33 +114,6 @@ async function patchProjectFiles(projectDir, projectName) {
   // If there is an app.config.* you can patch similarly (not assumed).
 }
 
-function detectPackageManager() {
-  // preference order: yarn, npm
-  const has = (cmd) => {
-    try {
-      require("child_process").execSync(`${cmd} --version`, { stdio: "ignore" });
-      return true;
-    } catch {
-      return false;
-    }
-  };
-  if (has("yarn")) return "yarn";
-  return "npm";
-}
-
-function validatePackageManager(pm) {
-  const valid = ["npm", "yarn", "pnpm"];
-  if (!valid.includes(pm)) {
-    die(`Invalid package manager: ${pm}. Must be one of: ${valid.join(", ")}`);
-  }
-  return pm;
-}
-
-function run(cmd, args, cwd) {
-  const { spawnSync } = require("child_process");
-  const r = spawnSync(cmd, args, { stdio: "inherit", cwd });
-  if (r.status !== 0) process.exit(r.status ?? 1);
-}
 
 async function main() {
   const args = process.argv.slice(2);
@@ -157,19 +124,6 @@ async function main() {
 
   const projectName = args.find((a) => !a.startsWith("--"));
   if (!projectName) die("Missing <project-name>.");
-
-  const noInstall = args.includes("--no-install");
-  
-  // Parse package manager option
-  let packageManager = null;
-  const pmIndex = args.findIndex((a) => a === "--package-manager" || a === "--pm");
-  if (pmIndex !== -1) {
-    const pmValue = args[pmIndex + 1];
-    if (!pmValue || pmValue.startsWith("--")) {
-      die("--package-manager requires a value: npm, yarn, or pnpm");
-    }
-    packageManager = validatePackageManager(pmValue);
-  }
 
   const targetDir = path.resolve(process.cwd(), projectName);
   ensureEmptyDir(targetDir);
@@ -211,37 +165,12 @@ async function main() {
   console.log("🛠️  Patching project metadata...");
   await patchProjectFiles(targetDir, projectName);
 
-  if (!noInstall) {
-    const pm = packageManager || detectPackageManager();
-    console.log(`📥 Installing dependencies (${pm})...`);
-    
-    // Verify package manager is available
-    const has = (cmd) => {
-      try {
-        require("child_process").execSync(`${cmd} --version`, { stdio: "ignore" });
-        return true;
-      } catch {
-        return false;
-      }
-    };
-    
-    if (!has(pm)) {
-      die(`${pm} is not installed. Please install it first or use a different package manager.`);
-    }
-    
-    if (pm === "pnpm") run("pnpm", ["install"], targetDir);
-    else if (pm === "yarn") run("yarn", ["install"], targetDir);
-    else run("npm", ["install"], targetDir);
-  } else {
-    console.log("⏭️  Skipping install (--no-install).");
-  }
-
-  const pm = packageManager || detectPackageManager();
   console.log(`
 ✅ Done!
 
 Next:
   cd ${projectName}
+  ${pm} install
   ${pm} start
 `);
 }
