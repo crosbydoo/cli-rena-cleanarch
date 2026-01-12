@@ -1,0 +1,18 @@
+{
+  "name": "cli-rena-cleanarch",
+  "version": "1.0.0",
+  "description": "Scaffold a new project from crosbydoo/rena-cleanarch",
+  "license": "MIT",
+  "bin": {
+    "create-rena-cleanarch": "bin/cli-rena-cleanarch.js"
+  },
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "tar": "^7.1.1"
+  },
+  "keywords": ["cli", "rena-cleanarch", "scaffold", "project", "generator", "react-native", "clean-architecture", "clean-code", "clean-design", "clean-architecture-react-native", "clean-architecture-react-native-clean-code", "clean-architecture-react-native-clean-design"],
+  "author": "ristudev"
+}
