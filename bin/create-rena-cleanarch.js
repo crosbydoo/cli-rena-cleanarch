@@ -88,6 +88,16 @@ async function writeJson(p, obj) {
   await fsp.writeFile(p, txt, "utf8");
 }
 
+function detectPackageManager() {
+  // Check for lock files in current directory
+  const cwd = process.cwd();
+  if (fs.existsSync(path.join(cwd, "yarn.lock"))) return "yarn";
+  if (fs.existsSync(path.join(cwd, "pnpm-lock.yaml"))) return "pnpm";
+  if (fs.existsSync(path.join(cwd, "package-lock.json"))) return "npm";
+  // Default to npm
+  return "npm";
+}
+
 async function patchProjectFiles(projectDir, projectName) {
   // package.json name
   const pkgPath = path.join(projectDir, "package.json");
@@ -165,6 +175,7 @@ async function main() {
   console.log("🛠️  Patching project metadata...");
   await patchProjectFiles(targetDir, projectName);
 
+  const pm = detectPackageManager();
   console.log(`
 ✅ Done!
 
